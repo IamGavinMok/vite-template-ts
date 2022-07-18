@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue';
-import Dialog from ''
+import Dialog from './components/ac-dialog.vue';
 </script>
 
 <template>
@@ -15,6 +15,7 @@ import Dialog from ''
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <Dialog />
 </template>
 
 <style scoped>
