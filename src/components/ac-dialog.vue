@@ -2,7 +2,47 @@
     <div class="wrapper" @click="onClickBtn" v-text="domStudent.age"></div>
 </template>
 
-<script setup>
+<script>
+import { ref, reactive, toRefs, onBeforeMount, onMounted, watchEffect, computed, watch, defineComponent } from 'vue';
+
+export default defineComponent({
+    setup() {
+
+        const student = {
+            name: 'test1',
+            age: 19,
+        }
+        const domStudent = reactive(student);
+
+        const onClickBtn = () => {
+            const { name, age } = domStudent.value
+            console.log(name, age)
+        }
+
+        watch(
+            () => domStudent.age,
+            (newVal, Val) => {
+              
+                console.log(newVal)
+                console.log(Val);
+            },
+            { deep: true });
+
+
+        const count = computed(()=> +domStudent.age + 100);
+
+        setTimeout(() => {
+            console.log('count-1', count.value);
+            domStudent.age = 20;
+            console.log('count-2', count.value);
+        }, 1000)
+
+        return {
+            domStudent,
+            onClickBtn
+        }
+    }
+})
 // import { ref, reactive, toRefs, onBeforeMount, onMounted, watchEffect, computed } from 'vue';
 // import { useStore } from 'vuex';
 // import { useRoute, useRouter } from 'vue-router';
@@ -38,22 +78,6 @@
 //   ...toRefs(data)
 // })
 
-import { ref, reactive, toRefs, onBeforeMount, onMounted, watchEffect, computed, watch } from 'vue';
-const student = {
-    name: 'test1',
-    age: 19,
-}
-const domStudent = ref(student);
-
-const onClickBtn = () => {
-    const { name , age } = domStudent.value
-    console.log(name , age)
-}
-
-watchEffect(()=>{
-    console.log('12')
-})
-watch(()=>{})
 </script>
 <style scoped >
 .wrapper {
