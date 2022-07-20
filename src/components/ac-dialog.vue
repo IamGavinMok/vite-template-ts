@@ -15,16 +15,16 @@ export default defineComponent({
         const domStudent = reactive(student);
 
         const onClickBtn = () => {
-            const { name, age } = domStudent.value
-            console.log(name, age)
+            const { name, age } = domStudent;
+            domStudent.age = age + 1;
         }
 
         watch(
             () => domStudent.age,
-            (newVal, Val) => {
-              
+            (newVal, Val) => {         
                 console.log(newVal)
                 console.log(Val);
+                console.log(() => domStudent.name)
             },
             { deep: true });
 
